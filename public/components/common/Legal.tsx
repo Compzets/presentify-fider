@@ -6,13 +6,13 @@ interface LegalAgreementProps {
   onChange: (agreed: boolean) => void;
 }
 
-export const TermsOfService: React.FunctionComponent<{}> = () => {
+export const Faq: React.FunctionComponent<{}> = () => {
   const fider = useFider();
 
   if (fider.settings.hasLegal) {
     return (
-      <a href="/terms" target="_blank">
-        Terms of Service
+      <a href="https://presentify.compzets.com/faq.html" target="_blank">
+        Faq
       </a>
     );
   }
@@ -24,7 +24,7 @@ export const PrivacyPolicy: React.FunctionComponent<{}> = () => {
 
   if (fider.settings.hasLegal) {
     return (
-      <a href="/privacy" target="_blank">
+      <a href="https://presentify.compzets.com/privacy.html" target="_blank">
         Privacy Policy
       </a>
     );
@@ -38,7 +38,7 @@ export const LegalNotice: React.FunctionComponent<{}> = () => {
   if (fider.settings.hasLegal) {
     return (
       <p className="info">
-        By signing in, you agree to the <PrivacyPolicy /> and <TermsOfService />.
+        By signing in, you agree to the <PrivacyPolicy />.
       </p>
     );
   }
@@ -64,7 +64,7 @@ export const LegalAgreement: React.FunctionComponent<LegalAgreementProps> = prop
   if (fider.settings.hasLegal) {
     return (
       <Checkbox field="legalAgreement" onChange={props.onChange}>
-        I have read and agree to the <PrivacyPolicy /> and <TermsOfService />.
+        I have read and agree to the <PrivacyPolicy />.
       </Checkbox>
     );
   }

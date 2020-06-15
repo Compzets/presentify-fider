@@ -1,7 +1,7 @@
 import "./Footer.scss";
 
 import React from "react";
-import { PrivacyPolicy, TermsOfService } from "@fider/components";
+import { Faq, PrivacyPolicy } from "@fider/components";
 import { useFider } from "@fider/hooks";
 
 export const Footer = () => {
@@ -12,12 +12,12 @@ export const Footer = () => {
       <div className="container">
         {fider.settings.hasLegal && (
           <div className="l-links">
-            <PrivacyPolicy />
+            <Faq />
             &middot;
-            <TermsOfService />
+            <PrivacyPolicy />
           </div>
         )}
-        <a className="l-powered" target="_blank" href="https://getfider.com/">
+        <a className="l-powered" target="_blank" href="https://github.com/Compzets/presentify-ideas">
           <img src="https://getfider.com/images/logo-100x100.png" alt="Fider" />
           <span>Powered by Fider</span>
         </a>
