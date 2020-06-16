@@ -6,6 +6,19 @@ interface LegalAgreementProps {
   onChange: (agreed: boolean) => void;
 }
 
+export const Home: React.FunctionComponent<{}> = () => {
+  const fider = useFider();
+
+  if (fider.settings.hasLegal) {
+    return (
+      <a href="https://presentify.compzets.com" target="_blank">
+        Home
+      </a>
+    );
+  }
+  return null;
+};
+
 export const Faq: React.FunctionComponent<{}> = () => {
   const fider = useFider();
 
