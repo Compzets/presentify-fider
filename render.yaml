@@ -1,5 +1,5 @@
 services:
-    - type: web
+  - type: web
     name: presentify-ideas
     env: go
     repo: https://github.com/Compzets/presentify-ideas.git
