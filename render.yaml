@@ -4,4 +4,4 @@ services:
     env: go
     repo: https://github.com/Compzets/presentify-ideas.git
     buildCommand: npm ci
-    startCommand: ./fider migrate && ./fider
+    startCommand: ./bin/fider migrate && ./bin/fider
