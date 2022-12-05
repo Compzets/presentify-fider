@@ -3,8 +3,5 @@ services:
     name: presentify-ideas
     env: go
     repo: https://github.com/Compzets/presentify-ideas.git
-    scaling:
-        minInstances: 1
-        maxInstances: 1
     buildCommand: npm ci
     startCommand: ./fider migrate && ./fider
