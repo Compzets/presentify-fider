@@ -8,7 +8,9 @@ import (
 	"github.com/getfider/fider/app/pkg/web"
 )
 
-// Secure adds web security related Http Headers to response
+// Secure middleware is responsible for
+// 1. Setting the HTTP Security Headers
+// 2. Protecting from Host attacks
 func Secure() web.MiddlewareFunc {
 	return func(next web.HandlerFunc) web.HandlerFunc {
 		return func(c *web.Context) error {

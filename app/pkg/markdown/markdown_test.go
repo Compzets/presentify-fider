@@ -15,7 +15,7 @@ func TestFullMarkdown(t *testing.T) {
 		"# Hello World":                      `<h1>Hello World</h1>`,
 		"Hello <b>Beautiful</b> World":       `<p>Hello &lt;b&gt;Beautiful&lt;/b&gt; World</p>`,
 		"![](http://example.com/hello.jpg)":  `<p><img src="http://example.com/hello.jpg" alt="" /></p>`,
-		"Go to http://example.com/hello.jpg": `<p>Go to <a href="http://example.com/hello.jpg">http://example.com/hello.jpg</a></p>`,
+		"Go to http://example.com/hello.jpg": `<p>Go to <a href="http://example.com/hello.jpg" rel="nofollow noreferrer">http://example.com/hello.jpg</a></p>`,
 		`-123
 -456
 -789`: `<p>-123<br />
@@ -25,9 +25,11 @@ func TestFullMarkdown(t *testing.T) {
 - **Option 1**
 - *Option 2*
 - ~~Option 3~~`: `<ul>
-<li><strong>Option 1</strong><br /></li>
-<li><em>Option 2</em><br /></li>
-<li><del>Option 3</del><br /></li>
+<li><strong>Option 1</strong><br />
+</li>
+<li><em>Option 2</em><br />
+</li>
+<li><del>Option 3</del></li>
 </ul>`,
 		`Please add:
 – SEND_SMS
@@ -76,38 +78,5 @@ How are you?`,
 	} {
 		output := markdown.PlainText(input)
 		Expect(output).Equals(expected)
-	}
-}
-
-func TestSimpleMarkdown(t *testing.T) {
-	RegisterT(t)
-
-	for input, expected := range map[string]string{
-		"**Hello World**":                           `<p><strong>Hello World</strong></p>`,
-		"[My Link](http://example.com/)":            `<p><a href="http://example.com/">My Link</a></p>`,
-		"![My Image](http://example.com/hello.jpg)": `<p></p>`,
-		"Go to http://example.com/hello.jpg":        `<p>Go to <a href="http://example.com/hello.jpg">http://example.com/hello.jpg</a></p>`,
-		"~~Option 3~~":                              `<p><del>Option 3</del></p>`,
-		"# Hello World":                             `<p>Hello World</p>`,
-		"### Hello World":                           `<p>Hello World</p>`,
-		"Check this out: `HEEEY`":                   "<p>Check this out: <code>HEEEY</code></p>",
-		`-123
--456
--789`: `<p>-123<br />
--456<br />
--789</p>`,
-		`# Hello World
-How are you?`: `<p>Hello World</p>
-
-<p>How are you?</p>`,
-		`Hello World
-
-How are you?`: `<p>Hello World</p>
-
-<p>How are you?</p>`,
-		`Hello <b>Beautiful</b> World`: `<p>Hello &lt;b&gt;Beautiful&lt;/b&gt; World</p>`,
-	} {
-		output := markdown.Simple(input)
-		Expect(output).Equals(template.HTML(expected))
 	}
 }

@@ -8,13 +8,13 @@ import (
 	"strconv"
 
 	"github.com/getfider/fider/app"
-	"github.com/getfider/fider/app/models"
+	"github.com/getfider/fider/app/models/entity"
 	"github.com/getfider/fider/app/pkg/dbx"
 )
 
 func exportTable(ctx context.Context, tableName string) ([]byte, error) {
 	trx := ctx.Value(app.TransactionCtxKey).(*dbx.Trx)
-	tenant, _ := ctx.Value(app.TenantCtxKey).(*models.Tenant)
+	tenant, _ := ctx.Value(app.TenantCtxKey).(*entity.Tenant)
 	columnName := "tenant_id"
 	if tableName == "tenants" {
 		columnName = "id"
@@ -28,19 +28,19 @@ func exportTable(ctx context.Context, tableName string) ([]byte, error) {
 	return json.Marshal(jsonify(rows))
 }
 
-func jsonify(rows *sql.Rows) []map[string]interface{} {
+func jsonify(rows *sql.Rows) []map[string]any {
 	defer rows.Close()
 	columns, err := rows.Columns()
 	if err != nil {
 		panic(err.Error())
 	}
 
-	allResults := make([]map[string]interface{}, 0)
+	allResults := make([]map[string]any, 0)
 
 	for rows.Next() {
-		results := make(map[string]interface{})
-		values := make([]interface{}, len(columns))
-		scanArgs := make([]interface{}, len(values))
+		results := make(map[string]any)
+		values := make([]any, len(columns))
+		scanArgs := make([]any, len(values))
 		for i := range values {
 			scanArgs[i] = &values[i]
 		}
