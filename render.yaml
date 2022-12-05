@@ -1,6 +1,6 @@
 services:
 - type: web
-    name: presentifyideas
+    name: "presentify-ideas"
     env: go
     repo: https://github.com/Compzets/presentify-ideas.git
     scaling:
